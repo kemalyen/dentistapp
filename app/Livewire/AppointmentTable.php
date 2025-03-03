@@ -51,6 +51,7 @@ final class AppointmentTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Patient Name', 'patient_name'),
+            Column::make('Doctor Name', 'doctor_name'),
             Column::make('Created at', 'created_at_formatted', 'created_at')
                 ->sortable(),
 

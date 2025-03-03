@@ -38,7 +38,14 @@ class Appointment extends Model
     protected function patientName(): Attribute
     {
         return Attribute::make(
-            get: fn (Model $model) => $model->patient?->name,
+            get: fn () => $this->patient?->name,
+        );
+    }
+
+    protected function doctorName(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->doctor?->name,
         );
     }
 }

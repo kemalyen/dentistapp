@@ -8,6 +8,6 @@ class ListAppointsments extends Component
 {
     public function render()
     {
-        return view('livewire.appointment.list-appointsments');
+        return view('livewire.appointments.list-appointsments');
     }
 }
