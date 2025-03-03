@@ -1,6 +1,7 @@
 <?php
 
-use App\Livewire\Products\ListProducts;
+use App\Livewire\Appointment\ListAppointsments;
+use App\Livewire\Patient\ListPacients;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -15,6 +16,8 @@ Route::view('dashboard', 'dashboard')
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
      
+    Route::get('patients', ListPacients::class)->name('patients');    
+    Route::get('appointments', ListAppointsments::class)->name('appointments');    
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
