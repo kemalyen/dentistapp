@@ -1,5 +1,6 @@
 <?php
-
+ 
+use App\Livewire\Appointment\CreateAppointment;
 use App\Livewire\Appointment\ListAppointsments;
 use App\Livewire\Patient\ListPacients;
 use Illuminate\Support\Facades\Route;
@@ -19,8 +20,8 @@ Route::middleware(['auth'])->group(function () {
      
     Route::get('patients', ListPacients::class)->name('patients');    
     Route::get('appointments', ListAppointsments::class)->name('appointments'); 
-
-    Volt::route('appointments/create', 'appointments.create')->name('appointments.create');
+    Route::get('appointments/create', CreateAppointment::class)->name('appointments.create'); 
+ 
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/password', 'settings.password')->name('settings.password');

@@ -17,8 +17,18 @@ class UserFactory extends Factory
      */
     protected static ?string $password;
 
+    /**
+     * Indicate that the user is an doctor.
+     *
+     * @return Factory
+     */
+    public function doctor(): UserFactory
+    {
+        return $this->assignRole('doctor');
+    }
 
-        /**
+
+    /**
      * Indicate that the user is an admin.
      *
      * @return Factory
