@@ -8,18 +8,23 @@ use App\Models\Appointment;
 use App\Models\User;
 use Livewire\Component;
 
-class CreateAppointment extends Component
+class UpdateAppointment extends Component
 {
 
     public AppointmentForm $form;
 
-
-    public function store()
+    public function mount(Appointment $appointment)
     {
-        $this->form->store(); 
+        $this->form->setAppointment($appointment);
+    }
+
+    public function save()
+    {
+        $this->form->update();
  
         return $this->redirect('/appointments');
     }
+ 
 
     public function render()
     {

@@ -1,9 +1,7 @@
-<div>
-<x-appointments.layout :heading="__('Create a new Appointment')" :subheading="__('')">
-
-
-<x-searchable-dropdown  property="property_name" />
-
-    <livewire:appointment-table />
-</x-appointments.layout>
-</div>
+<section class="w-full ">
+    <x-appointments.layout :heading="__('List All Appointment')" :subheading="__('')">
+        <div class="w-full">
+            <livewire:appointment-table />
+        </div>
+    </x-appointments.layout>
+</section>
