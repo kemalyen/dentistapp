@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Livewire\Forms\Appointments;
-
-use Livewire\Attributes\Validate;
+namespace App\Livewire\Forms; 
 use Livewire\Form;
 use App\Models\Appointment;
 use App\Models\User;
@@ -49,12 +47,22 @@ class AppointmentForm extends Form
 
         $this->reset();
     }
-
-
-     
+ 
     public function update()
     {
-        $this->validate();
+        Log::info('update'. $this->date);
+        $this->validate([
+            'status' => 'required',
+            'date' => 'required|date_format:Y-m-d\TH:i|after:today',
+            'doctor_id' => [
+                'required',
+                'exists:users,id',
+            ],
+            'patient_id' => [
+                'required',
+                'exists:users,id',
+            ],
+        ]);
  
         $this->appointment->update(
             $this->all()

@@ -4,10 +4,10 @@ namespace App\Livewire\Patient;
 
 use Livewire\Component;
 
-class ListPacients extends Component
+class ListPatients extends Component
 {
     public function render()
     {
-        return view('livewire.patient.list-pacients');
+        return view('livewire.patient.list-patients');
     }
 }
