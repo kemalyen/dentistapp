@@ -13,7 +13,8 @@ class Appointment extends Model
 
     protected $fillable = [
         'status',
-        'date',
+        'starts_at',
+        'ends_at',
         'reason',
         'notes',
         'patient_id',

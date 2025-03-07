@@ -1,8 +1,6 @@
- <x-appointments.layout :heading="__('Create a new Appointment')" :subheading="__('')">
-
+ <x-appointments.layout :heading="__('Manage Appointment')" :subheading="__('')">
 
      <form wire:submit="save" class="my-6 w-full space-y-6 m-5">
-
          <flux:field>
              <flux:label>Doctor</flux:label>
              <flux:select wire:model="form.doctor_id" placeholder="Choose a doctor...">
@@ -31,10 +29,37 @@
          <flux:field>
              <flux:label>Date</flux:label>
 
-             <flux:input wire:model="form.date" type="datetime-local" format="Y-m-d H:i:s" />
+             <flux:input wire:model="form.starts_at" type="date" format="Y-m-d" />
 
-             <flux:error name="form.date" />
+             <flux:error name="form.starts_at" />
          </flux:field>
+
+
+         <flux:field>
+             <flux:label>Time</flux:label>
+             <flux:select wire:model="form.time">
+               <flux:select.option value=""> Choose a time...</flux:select.option>
+                 @foreach($times as $time_value)
+                 <flux:select.option value="{{ $time_value }}">{{ $time_value }}</flux:select.option>
+                 @endforeach
+             </flux:select>
+
+             <flux:error name="form.time_value" />
+         </flux:field>
+
+
+         <flux:field>
+             <flux:label>Duration</flux:label>
+             <flux:select wire:model="form.duration">
+               <flux:select.option value=""> Choose a duration...</flux:select.option>
+                 @foreach($durations as $duration_value)
+                 <flux:select.option value="{{ $duration_value }}">{{ $duration_value }}</flux:select.option>
+                 @endforeach
+             </flux:select>
+
+             <flux:error name="form.duration" />
+         </flux:field>
+
 
          <flux:field>
              <flux:label>Status</flux:label>

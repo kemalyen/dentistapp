@@ -34,7 +34,7 @@ final class AppointmentTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Appointment::query()->with('patient', 'doctor');
+        return Appointment::query()->with('patient', 'doctor')->orderBy('created_at', 'desc');
     }
 
     public function relationSearch(): array
@@ -79,22 +79,11 @@ final class AppointmentTable extends PowerGridComponent
     {
         return [
             Button::add('edit')
-                ->slot('Edit: ' . $row->id)
+                ->slot('Edit')
                 ->id()
                 ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
                 ->route('appointments.update', ['appointment' => $row->id], ''),
         ];
     }
-
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
+ 
 }

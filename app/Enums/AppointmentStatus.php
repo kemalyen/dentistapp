@@ -7,6 +7,7 @@ enum AppointmentStatus:string
     case ACTIVE = 'Active';
     case PENDING = 'Pending';
     case CANCELLED = 'Cancelled';
+    case COMPLETED = 'Completed';
 
     public function appointmentStatus(string $name): string
     {

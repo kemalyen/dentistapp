@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class,'patient_id')->constrained();
             $table->foreignIdFor(User::class,'doctor_id')->constrained();
-            $table->datetime('date');
+            $table->datetime('starts_at');
+            $table->datetime('ends_at');
             $table->enum('status', array_column(AppointmentStatus::cases(), 'value'))->default(AppointmentStatus::PENDING);
             $table->string('reason')->nullable();
             $table->string('notes')->nullable();

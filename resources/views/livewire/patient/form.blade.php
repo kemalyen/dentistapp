@@ -1,4 +1,4 @@
-<x-patients.layout :heading="__('Create a new Appointment')" :subheading="__('')">
+<x-patients.layout :heading="__('Manage Patient')" :subheading="__('')">
 
 
 <form wire:submit="save" class="my-6 w-full space-y-6 m-5">

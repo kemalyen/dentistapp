@@ -9,11 +9,11 @@
         </div>
     </div>
 
+    <flux:heading>{{ $heading ?? '' }}</flux:heading>
 
     <div class="flex w-full">
-  
-         
-            {{ $slot }}
-        
+
+        {{ $slot }}
+
     </div>
 </div>
