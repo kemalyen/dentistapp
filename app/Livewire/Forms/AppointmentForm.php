@@ -53,7 +53,6 @@ class AppointmentForm extends Form
                 'required',
                 'exists:users,id',
             ],
-            
         ]);
 
         $starts_at = Carbon::createFromFormat('Y-m-d H:i', ($this->starts_at . ' '. $this->time));
@@ -68,15 +67,14 @@ class AppointmentForm extends Form
             
         ]);
 
-        //$this->reset();
+        $this->reset();
     }
 
     public function update()
-    {
-        Log::info('update' . $this->date);
+    { 
         $this->validate([
             'status' => 'required',
-            'date' => 'required|date_format:Y-m-d\TH:i|after:today',
+            
             'doctor_id' => [
                 'required',
                 'exists:users,id',
@@ -86,9 +84,13 @@ class AppointmentForm extends Form
                 'exists:users,id',
             ],
         ]);
-
+ 
         $this->appointment->update(
-            $this->all()
+            [
+                'status' => $this->status,
+                'doctor_id' => $this->doctor_id,
+                'patient_id' => $this->patient_id
+            ]
         );
     }
  

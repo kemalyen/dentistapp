@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Appointment extends Model
 {
@@ -19,6 +20,11 @@ class Appointment extends Model
         'notes',
         'patient_id',
         'doctor_id',
+    ];
+
+    protected $casts = [
+        'starts_at' => 'datetime',
+        'ends_at' => 'datetime',
     ];
 
     public function patient(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -47,6 +53,20 @@ class Appointment extends Model
     {
         return Attribute::make(
             get: fn () => $this->doctor?->name,
+        );
+    }
+
+    protected function startsAtFormatted(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => Carbon::parse($this->starts_at)->format('d/m/Y H:i'),
+        );
+    }
+
+    protected function endsAtFormatted(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => Carbon::parse($this->ends_at)->format('d/m/Y H:i'),
         );
     }
 }

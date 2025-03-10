@@ -4,7 +4,7 @@
          <flux:field>
              <flux:label>Doctor</flux:label>
              <flux:select wire:model="form.doctor_id" placeholder="Choose a doctor...">
-             <flux:select.option value=""> Choose a doctor ...</flux:select.option>
+                 <flux:select.option value=""> Choose a doctor ...</flux:select.option>
                  @foreach($doctors as $doctor)
                  <flux:select.option value="{{ $doctor->id }}">{{ $doctor->name }}</flux:select.option>
                  @endforeach
@@ -17,7 +17,7 @@
              <flux:label>Patient</flux:label>
 
              <flux:select wire:model="form.patient_id" placeholder="Choose a patient...">
-             <flux:select.option value=""> Choose a patient ...</flux:select.option>
+                 <flux:select.option value=""> Choose a patient ...</flux:select.option>
                  @foreach($patients as $patient)
                  <flux:select.option value="{{ $patient->id }}">{{ $patient->name }}</flux:select.option>
                  @endforeach
@@ -26,7 +26,7 @@
              <flux:error name="form.patient_id" />
          </flux:field>
 
-         <flux:field>
+         <flux:field wire:show="show">
              <flux:label>Date</flux:label>
 
              <flux:input wire:model="form.starts_at" type="date" format="Y-m-d" />
@@ -35,10 +35,10 @@
          </flux:field>
 
 
-         <flux:field>
+         <flux:field wire:show="show">
              <flux:label>Time</flux:label>
              <flux:select wire:model="form.time">
-               <flux:select.option value=""> Choose a time...</flux:select.option>
+                 <flux:select.option value=""> Choose a time...</flux:select.option>
                  @foreach($times as $time_value)
                  <flux:select.option value="{{ $time_value }}">{{ $time_value }}</flux:select.option>
                  @endforeach
@@ -48,10 +48,10 @@
          </flux:field>
 
 
-         <flux:field>
+         <flux:field wire:show="show">
              <flux:label>Duration</flux:label>
              <flux:select wire:model="form.duration">
-               <flux:select.option value=""> Choose a duration...</flux:select.option>
+                 <flux:select.option value=""> Choose a duration...</flux:select.option>
                  @foreach($durations as $duration_value)
                  <flux:select.option value="{{ $duration_value }}">{{ $duration_value }}</flux:select.option>
                  @endforeach
@@ -64,7 +64,7 @@
          <flux:field>
              <flux:label>Status</flux:label>
              <flux:select wire:model="form.status">
-               <flux:select.option value=""> Choose a status...</flux:select.option>
+                 <flux:select.option value=""> Choose a status...</flux:select.option>
                  @foreach($status as $status_value)
                  <flux:select.option value="{{ $status_value }}">{{ $status_value }}</flux:select.option>
                  @endforeach

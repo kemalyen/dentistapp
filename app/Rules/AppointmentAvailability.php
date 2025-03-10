@@ -15,7 +15,8 @@ class AppointmentAvailability implements ValidationRule
         private string $starts_at,
         private string $time,
         private string $duration,
-        private int $doctor_id
+        private int $doctor_id,
+        private int $appointment_id = 0
     ) {}
     /**
      * Run the validation rule.
@@ -33,6 +34,8 @@ class AppointmentAvailability implements ValidationRule
         $exists =  Appointment::where('doctor_id', $this->doctor_id)
             ->whereBetween('starts_at', [$starts_at, $ends_at])
             ->whereBetween('ends_at', [$starts_at, $ends_at])
+            ->where()
+            ->where('id', '!=', $this->appointment_id)
             ->exists();
 
         if ($exists) {

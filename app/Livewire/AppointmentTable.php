@@ -18,6 +18,8 @@ final class AppointmentTable extends PowerGridComponent
 {
     public string $tableName = 'appointment-table-jkvsck-table';
 
+    public bool $is_dashboard = false;
+
     public function setUp(): array
     {
         $this->showCheckBox();
@@ -34,7 +36,13 @@ final class AppointmentTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Appointment::query()->with('patient', 'doctor')->orderBy('created_at', 'desc');
+        $query = Appointment::query()->with('patient', 'doctor')->orderBy('created_at', 'desc');
+ 
+        if($this->is_dashboard) {
+            $query->where('status', 'Active')->where('starts_at', '>=', Carbon::now());
+        }
+
+        return $query;
     }
 
     public function relationSearch(): array
@@ -61,7 +69,8 @@ final class AppointmentTable extends PowerGridComponent
         return [
             Column::make('Patient Name', 'patient_name')->searchable(),
             Column::make('Doctor Name', 'doctor_name')->searchable(),
-            Column::make('Date', 'date', 'created_at_formatted'),
+            Column::make('Date', 'starts_at_formatted'),
+            Column::make('Ends At', 'ends_at_formatted'),
             Column::make('Status', 'status'),
             Column::action('Action')
         ];
@@ -70,7 +79,7 @@ final class AppointmentTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::datetimepicker('created_at'),
+             
         ];
     }
 
